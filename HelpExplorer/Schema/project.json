@@ -1,0 +1,32 @@
+{
+  "widgets": [
+    {
+      "projects": [ "00000000-0000-0000-0000-000000000000" ],
+      "text": "No project loaded.",
+      "links": [
+        {
+          "text": "Getting started with Visual Studio",
+          "url": "https://dotnet.microsoft.com/apps/aspnet"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://dotnet.net/razor"
+        }
+      ]
+    },
+    {
+      "projects": [ "8BB2217D-0F2D-49D1-97BC-3654ED321F3B", "fae04ec0-301f-11d3-bf4b-00c04f79efbc" ],
+      "text": "You are working in an ASP.NET project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with ASP.NET",
+          "url": "https://dotnet.microsoft.com/apps/aspnet"
+        },
+        {
+          "text": "Razor tutorial",
+          "url": "https://dotnet.net/razor"
+        }
+      ]
+    }
+  ]
+}
