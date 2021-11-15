@@ -5,6 +5,7 @@
         <DisplayName>Help Explorer</DisplayName>
         <Description xml:space="preserve">Adds a Help Explorer tool window that provides contextual help and resources. Great for beginners, students, and hobby programmaers alike.</Description>
         <MoreInfo>https://github.com/madskristensen/HelpExplorer</MoreInfo>
+        <License>Resources\LICENSE</License>
         <Icon>Resources\Icon.png</Icon>
         <PreviewImage>Resources\Icon.png</PreviewImage>
         <Tags>help, tutorials</Tags>
