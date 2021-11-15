@@ -1,6 +1,6 @@
 # Help Explorer for Visual Studio
 
-[![Build status](https://ci.appveyor.com/api/projects/status/2835p8bajgsg6lir?svg=true)](https://ci.appveyor.com/project/madskristensen/developernews)
+[![Build status](https://ci.appveyor.com/api/projects/status/5b1gr9r9vjra7yuf?svg=true)](https://ci.appveyor.com/project/madskristensen/helpexplorer)
 
 Adds a Help Explorer tool window that provides contextual help and resources. Great for beginners, students, and hobby programmaers alike.
 
