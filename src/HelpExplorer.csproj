@@ -64,6 +64,10 @@
     <Content Include="Schema\project.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="..\LICENSE">
+      <Link>Resources\LICENSE</Link>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
       <Generator>VsixManifestGenerator</Generator>
