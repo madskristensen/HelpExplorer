@@ -3,7 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.31910.343
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpExplorer", "HelpExplorer\HelpExplorer.csproj", "{5D2A5BB4-B3B6-4DAF-836F-5FF6584F975C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpExplorer", "src\HelpExplorer.csproj", "{5D2A5BB4-B3B6-4DAF-836F-5FF6584F975C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F50EDA1-DE02-4D93-AE6E-1A4870873414}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		appveyor.yml = appveyor.yml
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
