@@ -6,79 +6,95 @@ using Microsoft.VisualStudio.Shell.Interop;
 
 namespace HelpExplorer
 {
-    public partial class MyToolWindowControl : UserControl
+public partial class MyToolWindowControl : UserControl
+{
+    private readonly Projects _projects;
+    //private Guid projectGuid = Guid.Empty;
+    //private string[] capabilities = null;
+    public IVsHierarchy hierarchy = null;
+
+    public MyToolWindowControl(Projects projects, Project activeProject)
     {
-        private readonly Projects _projects;
-        private Guid projectGuid = Guid.Empty;
+        ThreadHelper.ThrowIfNotOnUIThread();
 
-        public MyToolWindowControl(Projects projects, Project activeProject)
+        _projects = projects;
+        InitializeComponent();
+
+        GetActiveProjectcapabilities(activeProject);
+
+        UpdateProjects(this.hierarchy);
+
+        VS.Events.SelectionEvents.SelectionChanged += SelectionEvents_SelectionChanged;
+    }
+    private void GetActiveProjectcapabilities(Project activeProject)
+    {
+        ThreadHelper.ThrowIfNotOnUIThread();
+
+        if (activeProject != null)
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
-
-            _projects = projects;
-            InitializeComponent();
-
-            GetActiveProjectGuid(activeProject);
-
-            UpdateProjects();
-
-            VS.Events.SelectionEvents.SelectionChanged += SelectionEvents_SelectionChanged;
+            activeProject.GetItemInfo(out IVsHierarchy hierarchy, out var itemId, out IVsHierarchyItem item);
+            HierarchyUtilities.TryGetHierarchyProperty<string>(hierarchy, itemId, (int)__VSHPROPID5.VSHPROPID_ProjectCapabilities, out string value);
+            this.hierarchy = hierarchy;
+            //The following capabilities line allows you to check the projects capabilities so they can be added to project.json.
+            string[] capabilities = (value ?? "").Split(' ');
         }
+    }
 
-        private void GetActiveProjectGuid(Project activeProject)
+    private void SelectionEvents_SelectionChanged(object sender, Community.VisualStudio.Toolkit.SelectionChangedEventArgs e)
+    {
+        ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
         {
-            ThreadHelper.ThrowIfNotOnUIThread();
+            Project project = await VS.Solutions.GetActiveProjectAsync();
+            GetActiveProjectcapabilities(project);
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            UpdateProjects(this.hierarchy);
+        }).FireAndForget();
+    }
 
-            if (activeProject != null)
+    private void UpdateProjects(IVsHierarchy hierarchy)
+    {
+        Widgets.Children.Clear();
+
+        foreach (Widget widget in _projects.Widgets)
+        {
+            try
             {
-                activeProject.GetItemInfo(out IVsHierarchy hier, out var itemId, out IVsHierarchyItem item);
-                hier.GetGuidProperty(itemId, (int)__VSHPROPID.VSHPROPID_TypeGuid, out projectGuid);
+                //string capabilityMatch = widget.projects.First().projectTypeExpression;
+                if (!hierarchy.IsCapabilityMatch(widget.Projects.First()))
+                {
+                    continue;
+                }
+                var text = new Label { Content = widget.Text };
+                Widgets.Children.Add(text);
+
+                foreach (Link link in widget.Links)
+                {
+                    Hyperlink h = new Hyperlink();
+                    h.NavigateUri = new Uri(link.Url);
+                    h.RequestNavigate += OnRequestNavigate;
+                    h.Inlines.Add(link.Text);
+                    var textBlock = new TextBlock();
+                    textBlock.Inlines.Add(h);
+
+                    //var hyperlink = new Label { Content = link.Text };
+                    Widgets.Children.Add(textBlock);
+                }
             }
-        }
-
-        private void SelectionEvents_SelectionChanged(object sender, Community.VisualStudio.Toolkit.SelectionChangedEventArgs e)
-        {
-            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            catch (Exception ex)
             {
-                Project project = await VS.Solutions.GetActiveProjectAsync();
-                GetActiveProjectGuid(project);
-
-                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                UpdateProjects();
-
-            }).FireAndForget();
-        }
-
-        private void UpdateProjects()
-        {
-            foreach (Widget widget in _projects.Widgets)
-            {
-                try
-                {
-                    if (!widget.Projects.Contains(projectGuid.ToString()))
-                    {
-                        continue;
-                    }
-
-                    var text = new Label { Content = widget.Text };
-                    Widgets.Children.Add(text);
-
-                    foreach (Link link in widget.Links)
-                    {
-                        var h = new Hyperlink();
-                        h.Inlines.Add(link.Text);
-                        var textBlock = new TextBlock();
-                        textBlock.Inlines.Add(h);
-
-                        //var hyperlink = new Label { Content = link.Text };
-                        Widgets.Children.Add(textBlock);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ex.Log();
-                }
+                ex.Log();
             }
         }
     }
+    private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+    {
+        // for .NET Core you need to add UseShellExecute = true
+        var pStartInfo = new ProcessStartInfo(e.Uri.AbsoluteUri)
+        {
+            UseShellExecute = true
+        };
+        Process.Start(pStartInfo);
+        e.Handled = true;
+    }
+}
 }
