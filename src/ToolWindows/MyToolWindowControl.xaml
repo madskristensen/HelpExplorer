@@ -14,8 +14,10 @@
              d:DesignWidth="300"
              Name="MyToolWindow">
     <Grid>
-        <StackPanel Margin="10" Name="Widgets" Orientation="Vertical">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <StackPanel Margin="10" Name="Widgets" Orientation="Vertical">
 
-        </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>
