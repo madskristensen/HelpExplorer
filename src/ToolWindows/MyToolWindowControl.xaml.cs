@@ -1,7 +1,10 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Navigation;
 using HelpExplorer.Schema;
+using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell.Interop;
 
 namespace HelpExplorer
