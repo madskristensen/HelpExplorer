@@ -48,7 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyToolWindowCommand.cs" />
     <Compile Include="HelpExplorerPackage.cs" />
-    <Compile Include="Schema\Projects.cs" />
+    <Compile Include="Schema\ProjectTypeCollection.cs" />
     <Compile Include="source.extension.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -61,7 +61,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Schema\project.json">
+    <Content Include="Schema\projecttypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <Content Include="..\LICENSE">

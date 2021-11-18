@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using HelpExplorer.Schema;
 using Microsoft.VisualStudio.Imaging;
 
 namespace HelpExplorer
@@ -15,7 +14,7 @@ namespace HelpExplorer
 
         public override async Task<FrameworkElement> CreateAsync(int toolWindowId, CancellationToken cancellationToken)
         {
-            Projects projects = await Projects.LoadAsync();
+            Schema.ProjectTypeCollection projects = await Schema.ProjectTypeCollection.LoadAsync();
             Project project = await VS.Solutions.GetActiveProjectAsync();
             return new MyToolWindowControl(projects, project);
         }
