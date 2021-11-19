@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -7,20 +7,24 @@ using System.Windows.Shapes;
 using HelpExplorer.Schema;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell.Interop;
+using Microsoft.VisualStudio.Utilities;
 
 namespace HelpExplorer
 {
     public partial class MyToolWindowControl : UserControl
     {
         private readonly ProjectTypeCollection _projectTypes;
+        private readonly ContentTypeCollection _fileTypes;
         public IVsHierarchy hierarchy = null;
         public Project _activeProject;
+        public string _activeFile;
 
-        public MyToolWindowControl(ProjectTypeCollection projects, Project activeProject)
+        public MyToolWindowControl(ProjectTypeCollection projectTypes, ContentTypeCollection fileTypes, Project activeProject)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
-            _projectTypes = projects;
+            _projectTypes = projectTypes;
+            _fileTypes = fileTypes;
             _activeProject = activeProject;
             InitializeComponent();
 
@@ -28,11 +32,26 @@ namespace HelpExplorer
             UpdateProjects(hierarchy);
 
             VS.Events.SelectionEvents.SelectionChanged += SelectionChanged;
+            VS.Events.DocumentEvents.BeforeDocumentWindowShow += BeforeDocumentWindowShow;
             VS.Events.SolutionEvents.OnAfterCloseSolution += OnAfterCloseSolution;
+        }
+
+        private void BeforeDocumentWindowShow(DocumentView docView)
+        {
+            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            {
+                if (docView?.Document?.FilePath != _activeFile)
+                {
+                    _activeFile = docView?.Document?.FilePath;
+                    await UpdateFilesAsync(docView.TextBuffer.ContentType);
+                }
+
+            }).FireAndForget();
         }
 
         private void OnAfterCloseSolution()
         {
+            ThreadHelper.ThrowIfNotOnUIThread();
             SelectionChanged(null, null);
         }
 
@@ -48,6 +67,7 @@ namespace HelpExplorer
                 //The following capabilities line allows you to check the projects capabilities so they can be added to project.json.
                 var capabilities = (value ?? "").Split(' ');
             }
+
         }
 
         private void SelectionChanged(object sender, Community.VisualStudio.Toolkit.SelectionChangedEventArgs e)
@@ -59,26 +79,63 @@ namespace HelpExplorer
                 if (project != _activeProject)
                 {
                     _activeProject = project;
+                    await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                     GetActiveProjectcapabilities(project);
                     UpdateProjects(hierarchy);
                 }
             }).FireAndForget();
         }
 
+        private async Task UpdateFilesAsync(IContentType contentType)
+        {
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+
+            FileTypes.Children.Clear();
+
+            foreach (ContentType ft in _fileTypes.ContentTypes.Where(f => contentType.IsOfType(f.Name)))
+            {
+                var text = new TextBlock { Text = ft.Text, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
+                FileTypes.Children.Add(text);
+
+                foreach (Link link in ft.Links)
+                {
+                    var h = new Hyperlink
+                    {
+                        NavigateUri = new Uri(link.Url)
+                    };
+
+                    h.RequestNavigate += OnRequestNavigate;
+                    h.Inlines.Add(link.Text);
+                    var textBlock = new TextBlock { Text = "- ", Margin = new Thickness(15, 0, 0, 0) };
+                    textBlock.Inlines.Add(h);
+
+                    FileTypes.Children.Add(textBlock);
+                }
+
+                var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
+                FileTypes.Children.Add(line);
+            }
+        }
+
         private void UpdateProjects(IVsHierarchy hierarchy)
         {
-            Widgets.Children.Clear();
+            ProjectTypes.Children.Clear();
 
             foreach (ProjectType pt in _projectTypes.ProjectTypes)
             {
                 var capability = pt.Capability;
-                if ((_activeProject != null && string.IsNullOrEmpty(capability)) || (hierarchy == null || !hierarchy.IsCapabilityMatch(capability)))
+
+                if ((_activeProject == null && !string.IsNullOrEmpty(capability)) || _activeProject != null && string.IsNullOrEmpty(capability))
+                {
+                    continue;
+                }
+                else if (!string.IsNullOrEmpty(capability) && hierarchy?.IsCapabilityMatch(capability) == false)
                 {
                     continue;
                 }
 
                 var text = new TextBlock { Text = pt.Text, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
-                Widgets.Children.Add(text);
+                ProjectTypes.Children.Add(text);
 
                 foreach (Link link in pt.Links)
                 {
@@ -92,21 +149,17 @@ namespace HelpExplorer
                     var textBlock = new TextBlock { Text = "- ", Margin = new Thickness(15, 0, 0, 0) };
                     textBlock.Inlines.Add(h);
 
-                    Widgets.Children.Add(textBlock);
+                    ProjectTypes.Children.Add(textBlock);
                 }
 
                 var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
-                Widgets.Children.Add(line);
+                ProjectTypes.Children.Add(line);
+                break;
             }
         }
         private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            // for .NET Core you need to add UseShellExecute = true
-            var pStartInfo = new ProcessStartInfo(e.Uri.AbsoluteUri)
-            {
-                UseShellExecute = true
-            };
-            Process.Start(pStartInfo);
+            VsShellUtilities.OpenBrowser(e.Uri.AbsoluteUri, (int)__VSOSPFLAGS.OSP_LaunchSingleBrowser);
             e.Handled = true;
         }
     }
