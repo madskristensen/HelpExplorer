@@ -13,7 +13,7 @@ namespace HelpExplorer.Schema
         public static async Task<Projects> LoadAsync()
         {
             var dir = Path.GetDirectoryName(typeof(Projects).Assembly.Location);
-            var file = Path.Combine(dir, "schema", "project.json");
+            var file = Path.Combine(dir, "schema", "ProjectSdkStyle.json");
 
             using (var reader = new StreamReader(file))
             {
@@ -23,11 +23,37 @@ namespace HelpExplorer.Schema
         }
     }
 
+    //public class Widget
+    //{
+    //    public string[] Projects { get; set; }
+    //    public string Text { get; set; }
+    //    public Link[] Links { get; set; }
+    //}
+
+    //public class Link
+    //{
+    //    public string Text { get; set; }
+    //    public string Url { get; set; }
+    //}
+    //public class Rootobject
+    //{
+    //    public Widget[] widgets { get; set; }
+    //}
+
     public class Widget
     {
-        public string[] Projects { get; set; }
+        public ProjectType[] Projects { get; set; }
         public string Text { get; set; }
         public Link[] Links { get; set; }
+    }
+
+    public class ProjectType
+    {
+        public string Guid { get; set; }
+        public string Language { get; set; }
+        public string Platform { get; set; }
+        public string ProjectTypeExpression { get; set; }
+        public string FrameworkType { get; set; }
     }
 
     public class Link
@@ -35,5 +61,4 @@ namespace HelpExplorer.Schema
         public string Text { get; set; }
         public string Url { get; set; }
     }
-
 }

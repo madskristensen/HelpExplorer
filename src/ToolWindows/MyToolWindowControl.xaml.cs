@@ -6,6 +6,7 @@ using System.Windows.Navigation;
 using HelpExplorer.Schema;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell.Interop;
+using static Microsoft.VisualStudio.VSConstants;
 
 namespace HelpExplorer
 {
@@ -13,8 +14,7 @@ public partial class MyToolWindowControl : UserControl
 {
     private readonly Projects _projects;
     //private Guid projectGuid = Guid.Empty;
-    //private string[] capabilities = null;
-    public IVsHierarchy hierarchy = null;
+    private IVsHierarchy _hierarchy;
 
     public MyToolWindowControl(Projects projects, Project activeProject)
     {
@@ -24,8 +24,7 @@ public partial class MyToolWindowControl : UserControl
         InitializeComponent();
 
         GetActiveProjectcapabilities(activeProject);
-
-        UpdateProjects(this.hierarchy);
+        UpdateProjects();
 
         VS.Events.SelectionEvents.SelectionChanged += SelectionEvents_SelectionChanged;
     }
@@ -35,11 +34,10 @@ public partial class MyToolWindowControl : UserControl
 
         if (activeProject != null)
         {
-            activeProject.GetItemInfo(out IVsHierarchy hierarchy, out var itemId, out IVsHierarchyItem item);
-            HierarchyUtilities.TryGetHierarchyProperty<string>(hierarchy, itemId, (int)__VSHPROPID5.VSHPROPID_ProjectCapabilities, out string value);
-            this.hierarchy = hierarchy;
-            //The following capabilities line allows you to check the projects capabilities so they can be added to project.json.
-            string[] capabilities = (value ?? "").Split(' ');
+            activeProject.GetItemInfo(out _hierarchy, out var itemId, out IVsHierarchyItem item);
+            HierarchyUtilities.TryGetHierarchyProperty<string>(_hierarchy, itemId, (int)__VSHPROPID5.VSHPROPID_ProjectCapabilities, out var value);
+                //The following capabilities line allows you to check the projects capabilities so they can be added to ProjectSdkStyle.json. Should be removed once all capabilities are learned and not put in released version.
+                var capabilities = (value ?? "").Split(' ');
         }
     }
 
@@ -50,11 +48,12 @@ public partial class MyToolWindowControl : UserControl
             Project project = await VS.Solutions.GetActiveProjectAsync();
             GetActiveProjectcapabilities(project);
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            UpdateProjects(this.hierarchy);
+            UpdateProjects();
+
         }).FireAndForget();
     }
 
-    private void UpdateProjects(IVsHierarchy hierarchy)
+    private void UpdateProjects()
     {
         Widgets.Children.Clear();
 
@@ -62,24 +61,22 @@ public partial class MyToolWindowControl : UserControl
         {
             try
             {
-                //string capabilityMatch = widget.projects.First().projectTypeExpression;
-                if (!hierarchy.IsCapabilityMatch(widget.Projects.First()))
-                {
-                    continue;
-                }
-                var text = new Label { Content = widget.Text };
+                    var capabilityMatch = _hierarchy.IsCapabilityMatch(widget.Projects[0].ProjectTypeExpression);
+                    if (!capabilityMatch)
+                    {
+                        continue;
+                    }
+                    var text = new Label { Content = widget.Text };
                 Widgets.Children.Add(text);
 
                 foreach (Link link in widget.Links)
                 {
-                    Hyperlink h = new Hyperlink();
+                    Hyperlink h = new();
                     h.NavigateUri = new Uri(link.Url);
                     h.RequestNavigate += OnRequestNavigate;
                     h.Inlines.Add(link.Text);
                     var textBlock = new TextBlock();
                     textBlock.Inlines.Add(h);
-
-                    //var hyperlink = new Label { Content = link.Text };
                     Widgets.Children.Add(textBlock);
                 }
             }

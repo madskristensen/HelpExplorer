@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="HelpExplorer.c8c773f3-d62f-4717-9b7d-1d3e440a7d53" Version="1.0" Language="en-US" Publisher="Mads Kristensen" />
+        <Identity Id="HelpExplorer.c8c773f3-d62f-4717-9b7d-1d3e440a7d53" Version="1.10" Language="en-US" Publisher="Mads Kristensen" />
         <DisplayName>Help Explorer</DisplayName>
         <Description xml:space="preserve">Adds a Help Explorer tool window that provides contextual help and resources. Great for beginners, students, and hobby programmaers alike.</Description>
         <MoreInfo>https://github.com/madskristensen/HelpExplorer</MoreInfo>
