@@ -1,0 +1,74 @@
+{
+  "projecttypes": [
+    {
+      "capability": "",
+      "text": "No project loaded.",
+      "links": [
+        {
+          "text": "Getting started with Visual Studio",
+          "url": "https://visualstudio.microsoft.com/vs/"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "capability": "AspNetCore",
+      "text": "You are working in an ASP.NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with ASP.NET Core",
+          "url": "https://dotnet.microsoft.com/apps/aspnet"
+        },
+        {
+          "text": "Razor tutorial",
+          "url": "https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/?view=aspnetcore-6.0"
+        }
+      ]
+    },
+    {
+      "capability": "WPF",
+      "text": "You are working in an WPF project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with WPF",
+          "url": "https://docs.microsoft.com/en-us/dotnet/desktop/wpf/overview/?view=netdesktop-6.0"
+        },
+        {
+          "text": "WPF tutorial",
+          "url": "https://dotnet.net/razor"
+        }
+      ]
+    },
+    {
+      "capability": "VSIX",
+      "text": "You are working in an Visual Studio Extensibility project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Visual Studio Extensibility",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/extensibility/getting-started-with-the-vsix-project-template?view=vs-2022"
+        },
+        {
+          "text": "Visual Studio Extensibility tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/extensibility/extensibility-hello-world?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "CSharp",
+      "text": "You are working in an C# project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with C#",
+          "url": "https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/"
+        },
+        {
+          "text": "C# tutorial",
+          "url": "https://docs.microsoft.com/en-us/dotnet/csharp/tour-of-csharp/tutorials/"
+        }
+      ]
+    }
+  ]
+}

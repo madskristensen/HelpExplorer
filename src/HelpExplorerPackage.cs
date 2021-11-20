@@ -22,7 +22,6 @@ namespace HelpExplorer
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
             await this.RegisterCommandsAsync();
-
             this.RegisterToolWindows();
         }
     }

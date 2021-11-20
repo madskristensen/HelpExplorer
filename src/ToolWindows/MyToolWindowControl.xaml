@@ -14,9 +14,13 @@
              d:DesignWidth="300"
              Name="MyToolWindow">
     <Grid>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <StackPanel Margin="10" Name="Widgets" Orientation="Vertical">
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Margin="20 10 0 0" Name="ProjectTypes" Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="250" />
+                <StackPanel Margin="20 10 0 0" Name="FileTypes" Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="250" />
             </StackPanel>
         </ScrollViewer>
     </Grid>
