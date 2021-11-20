@@ -114,6 +114,12 @@ namespace HelpExplorer
 
                 var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                 FileTypes.Children.Add(line);
+                // read settings
+                if (General.Instance.MultipleFilesOption)
+                {
+                    continue;
+                }
+                break;
             }
         }
 
@@ -154,6 +160,11 @@ namespace HelpExplorer
 
                 var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                 ProjectTypes.Children.Add(line);
+                // read settings
+                if (General.Instance.MultipleProjectsOption)
+                {
+                    continue;
+                }
                 break;
             }
         }

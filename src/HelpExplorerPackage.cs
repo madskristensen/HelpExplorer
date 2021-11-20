@@ -15,6 +15,8 @@ namespace HelpExplorer
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.SolutionHasMultipleProjects_string)]
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.NoSolution_string)]
     [ProvideToolWindowVisibility(typeof(MyToolWindow.Pane), VSConstants.UICONTEXT.EmptySolution_string)]
+    [ProvideOptionPage(typeof(OptionsProvider.GeneralOptions), "HelpExplorer", "General", 0, 0, true)]
+    [ProvideProfile(typeof(OptionsProvider.GeneralOptions), "HelpExplorer", "General", 0, 0, true)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(PackageGuids.HelpExplorerString)]
     public sealed class HelpExplorerPackage : ToolkitPackage
