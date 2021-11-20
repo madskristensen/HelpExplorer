@@ -28,7 +28,7 @@ namespace HelpExplorer
             _activeProject = activeProject;
             InitializeComponent();
 
-            GetActiveProjectCapabilities(activeProject);
+            GetActiveProjectcapabilities(activeProject);
             UpdateProjects(hierarchy);
 
             VS.Events.SelectionEvents.SelectionChanged += SelectionChanged;
@@ -55,7 +55,7 @@ namespace HelpExplorer
             SelectionChanged(null, null);
         }
 
-        private void GetActiveProjectCapabilities(Project activeProject)
+        private void GetActiveProjectcapabilities(Project activeProject)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -80,7 +80,7 @@ namespace HelpExplorer
                 {
                     _activeProject = project;
                     await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    GetActiveProjectCapabilities(project);
+                    GetActiveProjectcapabilities(project);
                     UpdateProjects(hierarchy);
                 }
             }).FireAndForget();
