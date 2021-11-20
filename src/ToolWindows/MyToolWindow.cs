@@ -16,7 +16,7 @@ namespace HelpExplorer
         public override async Task<FrameworkElement> CreateAsync(int toolWindowId, CancellationToken cancellationToken)
         {
             ProjectTypeCollection projectTypes = await ProjectTypeCollection.LoadAsync();
-            ContentTypeCollection fileTypes = await ContentTypeCollection.LoadAsync();
+            FileTypeCollection fileTypes = await FileTypeCollection.LoadAsync();
             Project project = await VS.Solutions.GetActiveProjectAsync();
             return new MyToolWindowControl(projectTypes, fileTypes, project);
         }

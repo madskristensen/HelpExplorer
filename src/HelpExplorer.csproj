@@ -49,7 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Commands\MyToolWindowCommand.cs" />
     <Compile Include="HelpExplorerPackage.cs" />
-    <Compile Include="Schema\ContentTypeCollection.cs" />
+    <Compile Include="Schema\FileTypeCollection.cs" />
     <Compile Include="Schema\ProjectTypeCollection.cs" />
     <Compile Include="source.extension.cs">
       <AutoGen>True</AutoGen>
@@ -70,7 +70,7 @@
       <Link>Resources\LICENSE</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Schema\contenttypes.json">
+    <Content Include="Schema\filetypes.json">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="source.extension.vsixmanifest">

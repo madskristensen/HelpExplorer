@@ -1,0 +1,274 @@
+{
+  "filetypes": [
+    {
+      "name": "",
+      "text": "No file loaded.",
+      "links": [
+        {
+          "text": "Getting started with Visual Studio",
+          "url": "https://visualstudio.microsoft.com/vs/"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".fs",
+      "text": "You're editing a F# file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "F# home page",
+          "url": "https://dotnet.microsoft.com/languages/fsharp"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".fsproj",
+      "text": "You're editing a F# project file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "F# project file home page",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-project-file-schema-reference?view=vs-2022"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".vb",
+      "text": "You're editing a Visual Basic file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "Visual home page",
+          "url": "https://docs.microsoft.com/en-us/dotnet/visual-basic/?WT.mc_id=dotnet-35129-website"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".vbproj",
+      "text": "You're editing a Visual Basic project file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "Visual Basic project file home page",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-project-file-schema-reference?view=vs-2022"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".cs",
+      "text": "You're editing a C# file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "C# home page",
+          "url": "https://dotnet.microsoft.com/languages/csharp"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".razor",
+      "text": "You're editing a razor file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "razor home page",
+          "url": "https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-6.0&tabs=visual-studio"
+        },
+        {
+          "text": "Razor Tutorial",
+          "url": "https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/?view=aspnetcore-6.0"
+        }
+      ]
+    },
+    {
+      "name": ".csproj",
+      "text": "You're editing a C# project file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "C# project file home page",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/msbuild/msbuild-project-file-schema-reference?view=vs-2022"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".xaml",
+      "text": "You're editing a xank file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "XAML overview",
+          "url": "https://docs.microsoft.com/en-us/dotnet/desktop/wpf/xaml/?view=netdesktop-6.0"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".cshtml",
+      "text": "You're editing a HTML file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "C# home page",
+          "url": "https://dotnet.microsoft.com/languages/csharp"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".css",
+      "text": "You're editing a CSS file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "CSS home page",
+          "url": "https://dotnet.microsoft.com/languages/csharp"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".json",
+      "text": "You're editing a json file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "Newtonsoft json home page",
+          "url": "https://www.newtonsoft.com/json"
+        },
+        {
+          "text": "System.Text.Json home page",
+          "url": "https://docs.microsoft.com/en-us/dotnet/api/system.text.json?view=net-6.0"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".js",
+      "text": "You're editing a javascript file. Here are some helpful links.",
+      "links": [
+        {
+          "text": ".js home page",
+          "url": "https://dotnet.microsoft.com/languages/csharp"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".appxmanifest",
+      "text": "You're editing a .Net Maui file. Here are some helpful links.",
+      "links": [
+        {
+          "text": ".Net Maui home page",
+          "url": "https://docs.microsoft.com/en-us/dotnet/maui/what-is-maui"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".manifest",
+      "text": "You're editing a manifest file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "manifest home page",
+          "url": "https://docs.microsoft.com/en-us/windows/win32/sbscs/application-manifests"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".xml",
+      "text": "You're editing a xml file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "xml home page",
+          "url": "https://docs.microsoft.com/en-us/dotnet/standard/data/xml/"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".svg",
+      "text": "You're editing a svg file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "svg home page",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/extensibility/ux-guidelines/images-and-icons-for-visual-studio?view=vs-2022"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".ico",
+      "text": "You're editing a ico file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "ico home page",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/extensibility/ux-guidelines/images-and-icons-for-visual-studio?view=vs-2022"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    },
+    {
+      "name": ".png",
+      "text": "You're editing a png file. Here are some helpful links.",
+      "links": [
+        {
+          "text": "png home page",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/extensibility/ux-guidelines/images-and-icons-for-visual-studio?view=vs-2022"
+        },
+        {
+          "text": "Visual Studio tips & tricks",
+          "url": "https://channel9.msdn.com/Events/Visual-Studio/Visual-Studio-2022-Launch-Event/Tips-and-Tricks-Optimizing-build-performance"
+        }
+      ]
+    }
+  ]
+}

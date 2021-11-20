@@ -14,12 +14,12 @@ namespace HelpExplorer
     public partial class MyToolWindowControl : UserControl
     {
         private readonly ProjectTypeCollection _projectTypes;
-        private readonly ContentTypeCollection _fileTypes;
+        private readonly FileTypeCollection _fileTypes;
         public IVsHierarchy hierarchy = null;
         public Project _activeProject;
         public string _activeFile;
 
-        public MyToolWindowControl(ProjectTypeCollection projectTypes, ContentTypeCollection fileTypes, Project activeProject)
+        public MyToolWindowControl(ProjectTypeCollection projectTypes, FileTypeCollection fileTypes, Project activeProject)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -40,10 +40,12 @@ namespace HelpExplorer
         {
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
-                if (docView?.Document?.FilePath != _activeFile)
-                {
-                    _activeFile = docView?.Document?.FilePath;
-                    await UpdateFilesAsync(docView.TextBuffer.ContentType);
+            if (docView?.Document?.FilePath != _activeFile)
+            {
+                _activeFile = docView?.Document?.FilePath;
+                var ext = System.IO.Path.GetExtension(docView?.Document?.FilePath);
+                //await UpdateFilesAsync(docView.TextBuffer.ContentType, ext);
+                    await UpdateFilesAsync(ext);
                 }
 
             }).FireAndForget();
@@ -86,13 +88,13 @@ namespace HelpExplorer
             }).FireAndForget();
         }
 
-        private async Task UpdateFilesAsync(IContentType contentType)
+        //private async Task UpdateFilesAsync(IContentType contentType, string fileExtension)
+       private async Task UpdateFilesAsync(string fileExtension)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             FileTypes.Children.Clear();
-
-            foreach (ContentType ft in _fileTypes.ContentTypes.Where(f => contentType.IsOfType(f.Name)))
+            foreach (FileType ft in _fileTypes.FileTypes.Where(f => fileExtension.Equals( f.Name )))
             {
                 var text = new TextBlock { Text = ft.Text, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                 FileTypes.Children.Add(text);
