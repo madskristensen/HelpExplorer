@@ -23,8 +23,54 @@
           "url": "https://dotnet.microsoft.com/apps/aspnet"
         },
         {
+          "text": "ASP.NET Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/?view=aspnetcore-6.0"
+        }
+      ]
+    },
+    {
+      "capability": "DotNetCoreWeb",
+      "text": "You are working in an ASP.NET Core Web project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with ASP.NET Core Web",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/ide/quickstart-aspnet-core?view=vs-2022"
+        },
+        {
+          "text": "ASP.NET Core Web tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-aspnet-core?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "MauiBlazor",
+      "text": "You are working in an Maui Blazor .NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Maui Blazor.NET Core",
+          "url": "https://docs.microsoft.com/en-us/shows/xamarinshow/introduction-to-net-maui-blazor--the-xamarin-show"
+        },
+        {
+          "text": "Getting started with .NET MAUI Project and Item Templates",
+          "url": "https://marketplace.visualstudio.com/items?itemName=egvijayanand.maui-templates"
+        },
+        {
           "text": "Razor tutorial",
           "url": "https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/?view=aspnetcore-6.0"
+        }
+      ]
+    },
+    {
+      "capability": "WapProj",
+      "text": "You are working in an WinUI project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with WinUI",
+          "url": "https://docs.microsoft.com/en-us/windows/apps/winui/winui3/create-your-first-winui3-app?pivots=winui3-packaged-csharp"
+        },
+        {
+          "text": "WinUI tutorial",
+          "url": "https://docs.microsoft.com/en-us/windows/apps/get-started/samples"
         }
       ]
     },
