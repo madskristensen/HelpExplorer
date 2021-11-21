@@ -21,6 +21,12 @@ namespace HelpExplorer
         [DefaultValue(false)]
         public bool MultipleFilesOption { get; set; } = false;
 
+        [Category("Write Capabilities File")]
+        [DisplayName("Enable Local file creation of project capabilities file")]
+        [Description("Allows you to enable or disable the export active project capabilities to a file. Then you can easily open and copy capabilities to the projecttypes.json file.")]
+        [DefaultValue(true)]
+        public bool CreateCapabilitiesFile { get; set; } = true;
+
         [Category("Capabilities")]
         [DisplayName("Local file path to write project capabilities file")]
         [Description("Allows you to export active project capabilities to a file. Then you can easily open and copy capabilities to the projecttypes.json file.")]

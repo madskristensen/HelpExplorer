@@ -69,8 +69,12 @@ namespace HelpExplorer
                 HierarchyUtilities.TryGetHierarchyProperty<string>(hierarchy, itemId, (int)__VSHPROPID5.VSHPROPID_ProjectCapabilities, out var value);
                 this.hierarchy = hierarchy;
 #if DEBUG
-                //The following capabilities line allows you to check the projects capabilities so they can be added to projectTypes.json.
-                WriteCapabilitiesToFile(value);
+
+                if (General.Instance.CreateCapabilitiesFile)
+                {
+                    //The following capabilities line allows you to check the projects capabilities so they can be added to projectTypes.json.
+                    WriteCapabilitiesToFile(value);
+                }
 #endif
             }
         }
