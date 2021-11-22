@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -8,18 +9,20 @@ using HelpExplorer.Schema;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Utilities;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace HelpExplorer
 {
     public partial class MyToolWindowControl : UserControl
     {
         private readonly ProjectTypeCollection _projectTypes;
-        private readonly ContentTypeCollection _fileTypes;
+        private readonly FileTypeCollection _fileTypes;
         public IVsHierarchy hierarchy = null;
         public Project _activeProject;
         public string _activeFile;
 
-        public MyToolWindowControl(ProjectTypeCollection projectTypes, ContentTypeCollection fileTypes, Project activeProject)
+        public MyToolWindowControl(ProjectTypeCollection projectTypes, FileTypeCollection fileTypes, Project activeProject)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -43,7 +46,9 @@ namespace HelpExplorer
                 if (docView?.Document?.FilePath != _activeFile)
                 {
                     _activeFile = docView?.Document?.FilePath;
-                    await UpdateFilesAsync(docView.TextBuffer.ContentType);
+                    var ext = System.IO.Path.GetExtension(docView?.Document?.FilePath);
+                    //await UpdateFilesAsync(docView.TextBuffer.ContentType, ext);
+                    await UpdateFilesAsync(ext);
                 }
 
             }).FireAndForget();
@@ -58,16 +63,70 @@ namespace HelpExplorer
         private void GetActiveProjectCapabilities(Project activeProject)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-
             if (activeProject != null)
             {
                 activeProject.GetItemInfo(out IVsHierarchy hierarchy, out var itemId, out IVsHierarchyItem item);
                 HierarchyUtilities.TryGetHierarchyProperty<string>(hierarchy, itemId, (int)__VSHPROPID5.VSHPROPID_ProjectCapabilities, out var value);
                 this.hierarchy = hierarchy;
-                //The following capabilities line allows you to check the projects capabilities so they can be added to project.json.
-                var capabilities = (value ?? "").Split(' ');
-            }
+#if DEBUG
 
+                if (General.Instance.CreateCapabilitiesFile)
+                {
+                    //The following capabilities line allows you to check the projects capabilities so they can be added to projectTypes.json.
+                    WriteCapabilitiesToFile(value);
+                }
+#endif
+            }
+        }
+        private void WriteCapabilitiesToFile(string capability)
+        {
+            //This method only runs in debug mode
+            var fileName = string.Empty;
+            var capabilities = (capability ?? "").Split(' ');
+
+            switch (capability)
+            {
+                case var capability1 when (capabilities).Contains("AspNetCore"):
+                    fileName = "AspNetCore";
+                    break;
+                case var capability1 when (capabilities).Contains("WPF"):
+                    fileName = "WPF";
+                    break;
+                case var capability1 when (capabilities).Contains("VSIX"):
+                    fileName = "VSIX";
+                    break;
+                case var capability1 when (capabilities).Contains("WindowsForms"):
+                    fileName = "WindowsForms";
+                    break;
+                case var capability1 when (capabilities).Contains("DotNetCoreWeb"):
+                    fileName = "DotNetCoreWeb";
+                    break;
+                case var capability1 when (capabilities).Contains("WapProj"):
+                    fileName = "WapProj";
+                    break;
+                case var capability1 when (capabilities).Contains("MauiBlazor"):
+                    fileName = "MauiBlazor";
+                    break;
+                case var capability1 when (capabilities).Contains("MauiCore"):
+                    fileName = "MauiCore";
+                    break;
+                case var capability1 when (capabilities).Contains("WindowsXAML"):
+                    fileName = "WindowsXAML";
+                    break;
+                case var capability1 when (capabilities).Contains("CSharp"):
+                    fileName = "CSharp";
+                    break;
+            }
+            var dir = General.Instance.CapabilitiesFilePathOption;
+            var file = System.IO.Path.Combine(dir, $"{fileName}_Capabilities.txt");
+            if (!System.IO.Directory.Exists(dir))
+            {
+                System.IO.Directory.CreateDirectory(dir);
+            }
+            if (!System.IO.File.Exists(file))
+            {
+                System.IO.File.WriteAllLines(file, capabilities);
+            }
         }
 
         private void SelectionChanged(object sender, Community.VisualStudio.Toolkit.SelectionChangedEventArgs e)
@@ -86,13 +145,17 @@ namespace HelpExplorer
             }).FireAndForget();
         }
 
-        private async Task UpdateFilesAsync(IContentType contentType)
+        //private async Task UpdateFilesAsync(IContentType contentType, string fileExtension)
+        private async Task UpdateFilesAsync(string fileExtension)
         {
+            if (fileExtension == null)
+            {
+                return;
+            }
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             FileTypes.Children.Clear();
-
-            foreach (ContentType ft in _fileTypes.ContentTypes.Where(f => contentType.IsOfType(f.Name)))
+            foreach (FileType ft in _fileTypes.FileTypes.Where(f => fileExtension.Equals(f.Name)))
             {
                 var text = new TextBlock { Text = ft.Text, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                 FileTypes.Children.Add(text);
@@ -114,6 +177,12 @@ namespace HelpExplorer
 
                 var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                 FileTypes.Children.Add(line);
+                // read settings
+                if (General.Instance.MultipleFilesOption)
+                {
+                    continue;
+                }
+                break;
             }
         }
 
@@ -154,6 +223,11 @@ namespace HelpExplorer
 
                 var line = new Line { Margin = new Thickness(0, 0, 0, 20) };
                 ProjectTypes.Children.Add(line);
+                // read settings
+                if (General.Instance.MultipleProjectsOption)
+                {
+                    continue;
+                }
                 break;
             }
         }
