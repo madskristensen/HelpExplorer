@@ -86,34 +86,67 @@ namespace HelpExplorer
 
             switch (capability)
             {
-                case var capability1 when (capabilities).Contains("AspNetCore"):
-                    fileName = "AspNetCore";
+                case var capability1 when CoreCapabilityContains(capabilities, "AspNetCore","CSharp"):
+                    fileName = "AspNetCore_CSharp_CPS";
                     break;
-                case var capability1 when (capabilities).Contains("WPF"):
-                    fileName = "WPF";
+                case var capability1 when NonCoreCapabilityContains(capabilities, "AspNetCore", "CSharp"):
+                    fileName = "AspNetCore_CSharp";
                     break;
-                case var capability1 when (capabilities).Contains("VSIX"):
-                    fileName = "VSIX";
+                case var capability1 when CoreCapabilityContains(capabilities, "WPF", "CSharp"):
+                    fileName = "WPF_CSharp_CPS";
                     break;
-                case var capability1 when (capabilities).Contains("WindowsForms"):
-                    fileName = "WindowsForms";
+                case var capability1 when NonCoreCapabilityContains(capabilities, "WPF", "CSharp"):
+                    fileName = "WPF_CSharp";
                     break;
-                case var capability1 when (capabilities).Contains("DotNetCoreWeb"):
-                    fileName = "DotNetCoreWeb";
+                case var capability1 when NonCoreCapabilityContains(capabilities, "VSIX", "VB"):
+                    fileName = "VSIX_VB";
                     break;
-                case var capability1 when (capabilities).Contains("WapProj"):
-                    fileName = "WapProj";
+                case var capability1 when NonCoreCapabilityContains(capabilities, "VSIX", "CSharp"):
+                    fileName = "VSIX_CSharp";
                     break;
-                case var capability1 when (capabilities).Contains("MauiBlazor"):
-                    fileName = "MauiBlazor";
+                case var capability1 when CoreCapabilityContains(capabilities, "WindowsForms", "VB"):
+                    fileName = "WindowsForms_VB_CPS";
                     break;
-                case var capability1 when (capabilities).Contains("MauiCore"):
-                    fileName = "MauiCore";
+                case var capability1 when NonCoreCapabilityContains(capabilities, "WindowsForms", "VB"):
+                    fileName = "WindowsForms_VB";
                     break;
-                case var capability1 when (capabilities).Contains("WindowsXAML"):
-                    fileName = "WindowsXAML";
+                case var capability1 when CoreCapabilityContains(capabilities, "WindowsForms", "CSharp"):
+                    fileName = "WindowsForms_CSharp_CPS";
                     break;
-                case var capability1 when (capabilities).Contains("CSharp"):
+                case var capability1 when NonCoreCapabilityContains(capabilities, "WindowsForms", "CSharp"):
+                    fileName = "WindowsForms_CSharp";
+                    break;
+                case var capability1 when CoreCapabilityContains(capabilities, "DotNetCoreWeb", "CSharp"):
+                    fileName = "DotNetCoreWeb_CSharp";
+                    break;
+                case var capability1 when CoreCapabilityContains(capabilities, "DotNetCoreBlazor", "CSharp"):
+                    fileName = "DotNetCoreBlazor_CSharp";
+                    break;
+                case var capability1 when CoreCapabilityContains(capabilities, "WapProj", "CSharp"):
+                    fileName = "WapProj_CSharp";
+                    break;
+                case var capability1 when CoreCapabilityContains(capabilities, "MauiBlazor", "CSharp"):
+                    fileName = "MauiBlazor_CSharp";
+                    break;
+                case var capability1 when CoreCapabilityContains(capabilities, "MauiCore", "CSharp"):
+                    fileName = "MauiCore_CSharp";
+                    break;
+                case var capability1 when CoreCapabilityContains(capabilities, "WindowsXAML", "CSharp"):
+                    fileName = "WindowsXAML_CSharp_CPS";
+                    break;
+                case var capability1 when NonCoreCapabilityContains(capabilities, "WindowsXAML", "CSharp"):
+                    fileName = "WindowsXAML_CSharp";
+                    break;
+                case var capability1 when CoreCapabilityContains(capabilities, "VB"):
+                    fileName = "VB_CPS";
+                    break;
+                case var capability1 when NonCoreCapabilityContains(capabilities, "VB"):
+                    fileName = "VB";
+                    break;
+                case var capability1 when CoreCapabilityContains(capabilities, "CSharp"):
+                    fileName = "CSharp_CPS";
+                    break;
+                case var capability1 when NonCoreCapabilityContains(capabilities, "CSharp"):
                     fileName = "CSharp";
                     break;
             }
@@ -128,6 +161,11 @@ namespace HelpExplorer
                 System.IO.File.WriteAllLines(file, capabilities);
             }
         }
+        private bool CoreCapabilityContains(string[] capabilities, string projectType, string language) => capabilities.Contains(projectType, StringComparer.OrdinalIgnoreCase) && capabilities.Contains(language, StringComparer.OrdinalIgnoreCase) && capabilities.Contains("CPS", StringComparer.OrdinalIgnoreCase);
+        private bool CoreCapabilityContains(string[] capabilities, string projectType) => capabilities.Contains(projectType, StringComparer.OrdinalIgnoreCase) && capabilities.Contains("CPS", StringComparer.OrdinalIgnoreCase);
+        private bool NonCoreCapabilityContains(string[] capabilities, string projectType, string language) => capabilities.Contains(projectType, StringComparer.OrdinalIgnoreCase) && capabilities.Contains(language, StringComparer.OrdinalIgnoreCase) && !capabilities.Contains("CPS", StringComparer.OrdinalIgnoreCase);
+        private bool NonCoreCapabilityContains(string[] capabilities, string projectType) => capabilities.Contains(projectType, StringComparer.OrdinalIgnoreCase) && !capabilities.Contains("CPS", StringComparer.OrdinalIgnoreCase);
+
 
         private void SelectionChanged(object sender, Community.VisualStudio.Toolkit.SelectionChangedEventArgs e)
         {
