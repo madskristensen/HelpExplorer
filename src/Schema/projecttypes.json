@@ -2,6 +2,8 @@
   "projecttypes": [
     {
       "capability": "",
+      "capabilityExpression": "",
+      "capabilitiesFileName": "",
       "text": "No project loaded.",
       "links": [
         {
@@ -16,6 +18,8 @@
     },
     {
       "capability": "AspNetCore",
+      "capabilityExpression": "(AspNetCore & CSharp) & CPS",
+      "capabilitiesFileName": "AspNetCore_CSharp_CPS",
       "text": "You are working in an ASP.NET Core project and might find these links useful.",
       "links": [
         {
@@ -30,6 +34,8 @@
     },
     {
       "capability": "DotNetCoreWeb",
+      "capabilityExpression": "(DotNetCoreWeb & CSharp) & CPS",
+      "capabilitiesFileName": "DotNetCoreWeb_CSharp_CPS",
       "text": "You are working in an ASP.NET Core Web project and might find these links useful.",
       "links": [
         {
@@ -44,6 +50,8 @@
     },
     {
       "capability": "MauiBlazor",
+      "capabilityExpression": "(MauiBlazor & CSharp) & CPS",
+      "capabilitiesFileName": "MauiBlazor_CSharp_CPS",
       "text": "You are working in an Maui Blazor .NET Core project and might find these links useful.",
       "links": [
         {
@@ -62,6 +70,8 @@
     },
     {
       "capability": "WapProj",
+      "capabilityExpression": "(WapProj & CSharp) & CPS",
+      "capabilitiesFileName": "WapProj_CSharp_CPS",
       "text": "You are working in an WinUI project and might find these links useful.",
       "links": [
         {
@@ -76,6 +86,8 @@
     },
     {
       "capability": "WPF",
+      "capabilityExpression": "(WPF & CSharp) & CPS",
+      "capabilitiesFileName": "WPF_CSharp_CPS",
       "text": "You are working in an WPF project and might find these links useful.",
       "links": [
         {
@@ -90,6 +102,8 @@
     },
     {
       "capability": "VSIX",
+      "capabilityExpression": "(VSIX & CSharp) & !CPS",
+      "capabilitiesFileName": "VSIX_CSharp",
       "text": "You are working in an Visual Studio Extensibility project and might find these links useful.",
       "links": [
         {
@@ -104,6 +118,8 @@
     },
     {
       "capability": "CSharp",
+      "capabilityExpression": "(CSharp & CPS)",
+      "capabilitiesFileName": "CSharp_CPS",
       "text": "You are working in an C# project and might find these links useful.",
       "links": [
         {

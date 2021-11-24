@@ -18,7 +18,8 @@ namespace HelpExplorer
     {
         private readonly ProjectTypeCollection _projectTypes;
         private readonly FileTypeCollection _fileTypes;
-        public IVsHierarchy hierarchy = null;
+        public IVsHierarchy Hierarchy = null;
+        public string CapabilityValues = null;
         public Project _activeProject;
         public string _activeFile;
 
@@ -32,7 +33,7 @@ namespace HelpExplorer
             InitializeComponent();
 
             GetActiveProjectCapabilities(activeProject);
-            UpdateProjects(hierarchy);
+            UpdateProjects(Hierarchy);
 
             VS.Events.SelectionEvents.SelectionChanged += SelectionChanged;
             VS.Events.DocumentEvents.BeforeDocumentWindowShow += BeforeDocumentWindowShow;
@@ -66,106 +67,31 @@ namespace HelpExplorer
             if (activeProject != null)
             {
                 activeProject.GetItemInfo(out IVsHierarchy hierarchy, out var itemId, out IVsHierarchyItem item);
-                HierarchyUtilities.TryGetHierarchyProperty<string>(hierarchy, itemId, (int)__VSHPROPID5.VSHPROPID_ProjectCapabilities, out var value);
-                this.hierarchy = hierarchy;
-#if DEBUG
-
-                if (General.Instance.CreateCapabilitiesFile)
-                {
-                    //The following capabilities line allows you to check the projects capabilities so they can be added to projectTypes.json.
-                    WriteCapabilitiesToFile(value);
-                }
-#endif
+                HierarchyUtilities.TryGetHierarchyProperty<string>(hierarchy, itemId, (int)__VSHPROPID5.VSHPROPID_ProjectCapabilities, out var capabilityValues);
+                Hierarchy = hierarchy;
+                CapabilityValues = capabilityValues;
             }
         }
-        private void WriteCapabilitiesToFile(string capability)
+        private void WriteCapabilitiesToFile(string capability, string fileName)
         {
             //This method only runs in debug mode
-            var fileName = string.Empty;
             var capabilities = (capability ?? "").Split(' ');
-
-            switch (capability)
-            {
-                case var capability1 when CoreCapabilityContains(capabilities, "AspNetCore","CSharp"):
-                    fileName = "AspNetCore_CSharp_CPS";
-                    break;
-                case var capability1 when NonCoreCapabilityContains(capabilities, "AspNetCore", "CSharp"):
-                    fileName = "AspNetCore_CSharp";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "WPF", "CSharp"):
-                    fileName = "WPF_CSharp_CPS";
-                    break;
-                case var capability1 when NonCoreCapabilityContains(capabilities, "WPF", "CSharp"):
-                    fileName = "WPF_CSharp";
-                    break;
-                case var capability1 when NonCoreCapabilityContains(capabilities, "VSIX", "VB"):
-                    fileName = "VSIX_VB";
-                    break;
-                case var capability1 when NonCoreCapabilityContains(capabilities, "VSIX", "CSharp"):
-                    fileName = "VSIX_CSharp";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "WindowsForms", "VB"):
-                    fileName = "WindowsForms_VB_CPS";
-                    break;
-                case var capability1 when NonCoreCapabilityContains(capabilities, "WindowsForms", "VB"):
-                    fileName = "WindowsForms_VB";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "WindowsForms", "CSharp"):
-                    fileName = "WindowsForms_CSharp_CPS";
-                    break;
-                case var capability1 when NonCoreCapabilityContains(capabilities, "WindowsForms", "CSharp"):
-                    fileName = "WindowsForms_CSharp";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "DotNetCoreWeb", "CSharp"):
-                    fileName = "DotNetCoreWeb_CSharp";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "DotNetCoreBlazor", "CSharp"):
-                    fileName = "DotNetCoreBlazor_CSharp";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "WapProj", "CSharp"):
-                    fileName = "WapProj_CSharp";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "MauiBlazor", "CSharp"):
-                    fileName = "MauiBlazor_CSharp";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "MauiCore", "CSharp"):
-                    fileName = "MauiCore_CSharp";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "WindowsXAML", "CSharp"):
-                    fileName = "WindowsXAML_CSharp_CPS";
-                    break;
-                case var capability1 when NonCoreCapabilityContains(capabilities, "WindowsXAML", "CSharp"):
-                    fileName = "WindowsXAML_CSharp";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "VB"):
-                    fileName = "VB_CPS";
-                    break;
-                case var capability1 when NonCoreCapabilityContains(capabilities, "VB"):
-                    fileName = "VB";
-                    break;
-                case var capability1 when CoreCapabilityContains(capabilities, "CSharp"):
-                    fileName = "CSharp_CPS";
-                    break;
-                case var capability1 when NonCoreCapabilityContains(capabilities, "CSharp"):
-                    fileName = "CSharp";
-                    break;
-            }
             var dir = General.Instance.CapabilitiesFilePathOption;
             var file = System.IO.Path.Combine(dir, $"{fileName}_Capabilities.txt");
             if (!System.IO.Directory.Exists(dir))
             {
                 System.IO.Directory.CreateDirectory(dir);
             }
-            if (!System.IO.File.Exists(file))
+            if (System.IO.File.Exists(file))
+            {
+                System.IO.File.Delete(file);
+                System.IO.File.WriteAllLines(file, capabilities);
+            }
+            else
             {
                 System.IO.File.WriteAllLines(file, capabilities);
             }
         }
-        private bool CoreCapabilityContains(string[] capabilities, string projectType, string language) => capabilities.Contains(projectType, StringComparer.OrdinalIgnoreCase) && capabilities.Contains(language, StringComparer.OrdinalIgnoreCase) && capabilities.Contains("CPS", StringComparer.OrdinalIgnoreCase);
-        private bool CoreCapabilityContains(string[] capabilities, string projectType) => capabilities.Contains(projectType, StringComparer.OrdinalIgnoreCase) && capabilities.Contains("CPS", StringComparer.OrdinalIgnoreCase);
-        private bool NonCoreCapabilityContains(string[] capabilities, string projectType, string language) => capabilities.Contains(projectType, StringComparer.OrdinalIgnoreCase) && capabilities.Contains(language, StringComparer.OrdinalIgnoreCase) && !capabilities.Contains("CPS", StringComparer.OrdinalIgnoreCase);
-        private bool NonCoreCapabilityContains(string[] capabilities, string projectType) => capabilities.Contains(projectType, StringComparer.OrdinalIgnoreCase) && !capabilities.Contains("CPS", StringComparer.OrdinalIgnoreCase);
-
 
         private void SelectionChanged(object sender, Community.VisualStudio.Toolkit.SelectionChangedEventArgs e)
         {
@@ -178,12 +104,11 @@ namespace HelpExplorer
                     _activeProject = project;
                     await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                     GetActiveProjectCapabilities(project);
-                    UpdateProjects(hierarchy);
+                    UpdateProjects(Hierarchy);
                 }
             }).FireAndForget();
         }
 
-        //private async Task UpdateFilesAsync(IContentType contentType, string fileExtension)
         private async Task UpdateFilesAsync(string fileExtension)
         {
             if (fileExtension == null)
@@ -230,7 +155,7 @@ namespace HelpExplorer
 
             foreach (ProjectType pt in _projectTypes.ProjectTypes)
             {
-                var capability = pt.Capability;
+                var capability = pt.CapabilityExpression;
 
                 if ((_activeProject == null && !string.IsNullOrEmpty(capability)) || _activeProject != null && string.IsNullOrEmpty(capability))
                 {
@@ -240,6 +165,16 @@ namespace HelpExplorer
                 {
                     continue;
                 }
+#if DEBUG
+                if (General.Instance.CreateCapabilitiesFile)
+                {
+                    //The following capabilities line allows you to check the projects capabilities so they can be added to projectTypes.json.
+                    if (!string.IsNullOrEmpty(CapabilityValues) && !string.IsNullOrEmpty(pt.CapabilitiesFileName))
+                    {
+                        WriteCapabilitiesToFile(CapabilityValues, pt.CapabilitiesFileName);
+                    }
+                }
+#endif
 
                 var text = new TextBlock { Text = pt.Text, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                 ProjectTypes.Children.Add(text);
