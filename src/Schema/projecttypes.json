@@ -69,34 +69,130 @@
       ]
     },
     {
-      "capability": "WapProj",
-      "capabilityExpression": "(WapProj & CSharp) & CPS",
-      "capabilitiesFileName": "WapProj_CSharp_CPS",
-      "text": "You are working in an WinUI project and might find these links useful.",
-      "links": [
-        {
-          "text": "Getting started with WinUI",
-          "url": "https://docs.microsoft.com/en-us/windows/apps/winui/winui3/create-your-first-winui3-app?pivots=winui3-packaged-csharp"
-        },
-        {
-          "text": "WinUI tutorial",
-          "url": "https://docs.microsoft.com/en-us/windows/apps/get-started/samples"
-        }
-      ]
-    },
-    {
       "capability": "WPF",
-      "capabilityExpression": "(WPF & CSharp) & CPS",
+      "capabilityExpression": "(WPF & CSharp) & (CPS & CrossPlatformExecutable)",
       "capabilitiesFileName": "WPF_CSharp_CPS",
-      "text": "You are working in an WPF project and might find these links useful.",
+      "text": "You are working in an WPF Application project and might find these links useful.",
       "links": [
         {
-          "text": "Getting started with WPF",
+          "text": "Getting started with WPF Application",
           "url": "https://docs.microsoft.com/en-us/dotnet/desktop/wpf/overview/?view=netdesktop-6.0"
         },
         {
           "text": "WPF tutorial",
-          "url": "https://dotnet.net/razor"
+          "url": "https://docs.microsoft.com/en-us/dotnet/desktop/wpf/get-started/create-app-visual-studio?view=netdesktop-6.0"
+        }
+      ]
+    },
+    {
+      "capability": "WPFLibrary",
+      "capabilityExpression": "(WPF & CSharp) & (CPS & !CrossPlatformExecutable)",
+      "capabilitiesFileName": "WPFLibrary_CSharp_CPS",
+      "text": "You are working in an WPF Library project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with WPF Library",
+          "url": "https://docs.microsoft.com/en-us/dotnet/desktop/wpf/overview/?view=netdesktop-6.0"
+        },
+        {
+          "text": "WPF library tutorial",
+          "url": "https://docs.microsoft.com/en-us/dotnet/desktop/wpf/get-started/create-app-visual-studio?view=netdesktop-6.0"
+        }
+      ]
+    },
+    {
+      "capability": "WindowsForms",
+      "capabilityExpression": "(WindowsForms & CSharp) & (CPS & CrossPlatformExecutable)",
+      "capabilitiesFileName": "WindowsForms_CSharp_CPS",
+      "text": "You are working in an WindowsForms .NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with WindowsForms .NET Core",
+          "url": "https://docs.microsoft.com/en-us/dotnet/core/compatibility/windows-forms/6.0/application-bootstrap"
+        },
+        {
+          "text": "WindowsForms .NET Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/ide/create-csharp-winform-visual-studio?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "WindowsForms",
+      "capabilityExpression": "(WindowsForms & CSharp) & (CPS & !CrossPlatformExecutable)",
+      "capabilitiesFileName": "WindowsForms_ClassLibrary_CSharp_CPS",
+      "text": "You are working in an WindowsForms Class Library .NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with WindowsForms Class Library .NET Core",
+          "url": "https://docs.microsoft.com/en-us/dotnet/core/compatibility/windows-forms/6.0/application-bootstrap"
+        },
+        {
+          "text": "WindowsForms Class Library .NET Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/ide/create-csharp-winform-visual-studio?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "WindowsXAML",
+      "capabilityExpression": "(WindowsXAML & CSharp) & !CPS",
+      "capabilitiesFileName": "Universal_Windows_Platform_CSharp",
+      "text": "You are working in an UWP project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with UWP",
+          "url": "https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide"
+        },
+        {
+          "text": "UWP tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-uwp?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "WinUI3",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & WapProj)",
+      "capabilitiesFileName": "WinUI_WapProj_CSharp_CPS",
+      "text": "You are working in an WinUI WapProj .Net Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with WinUI WapProj .Net Core",
+          "url": "https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide"
+        },
+        {
+          "text": "WinUI WapProj .Net Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-uwp?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "WinUI3",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & Msix) & !WapProj",
+      "capabilitiesFileName": "WinUI_App_Msix__CSharp_CPS",
+      "text": "You are working in an WinUI Application Package Msix .Net Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with WinUI Application Package Msix .Net Core",
+          "url": "https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide"
+        },
+        {
+          "text": "WinUI Application Package Msix .Net Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-uwp?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "WinUI3ClassLibrary",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & !WapProj)",
+      "capabilitiesFileName": "WinUI_ClassLibrary_CSharp_CPS",
+      "text": "You are working in an WinUI Class Library .Net Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with WinUI Class Library .Net Core",
+          "url": "https://docs.microsoft.com/en-us/windows/apps/winui/"
+        },
+        {
+          "text": "WinUI Class Library .Net Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/windows/apps/winui/winui3/"
         }
       ]
     },
@@ -113,6 +209,22 @@
         {
           "text": "Visual Studio Extensibility tutorial",
           "url": "https://docs.microsoft.com/en-us/visualstudio/extensibility/extensibility-hello-world?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "TestContainer",
+      "capabilityExpression": "(TestContainer & CSharp) & CPS",
+      "capabilitiesFileName": "NUnit_CSharp_CPS",
+      "text": "You are working in an NUnit Test .NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with NUnit Test in .NET Core",
+          "url": "https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-nunit"
+        },
+        {
+          "text": "NUnit Test .NET Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices"
         }
       ]
     },

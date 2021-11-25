@@ -114,7 +114,7 @@
     },
     {
       "name": ".xaml",
-      "text": "You're editing a xank file. Here are some helpful links.",
+      "text": "You're editing a xaml file. Here are some helpful links.",
       "links": [
         {
           "text": "XAML overview",
