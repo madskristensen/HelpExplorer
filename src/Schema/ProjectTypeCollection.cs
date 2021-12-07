@@ -26,6 +26,8 @@ namespace HelpExplorer.Schema
     public class ProjectType
     {
         public string Capability { get; set; }
+        public string CapabilityExpression { get; set; }
+        public string CapabilitiesFileName { get; set; }
         public string Text { get; set; }
         public Link[] Links { get; set; }
     }

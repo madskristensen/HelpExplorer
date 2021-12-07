@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 
 namespace HelpExplorer
 {
@@ -6,7 +7,6 @@ namespace HelpExplorer
     {
         public class GeneralOptions : BaseOptionPage<General> { }
     }
-
     public class General : BaseOptionModel<General>
     {
         [Category("Display Multiple Types")]
