@@ -2,6 +2,7 @@
 global using Community.VisualStudio.Toolkit;
 global using Microsoft.VisualStudio.Shell;
 global using Task = System.Threading.Tasks.Task;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Microsoft.VisualStudio;

@@ -69,32 +69,8 @@
       ]
     },
     {
-      "capability": "WPF & DocFx.Console & Microsoft.Extensions.Logging",
-      "capabilityExpression": "(WPF & CSharp) & (CPS & CrossPlatformExecutable) & (DocFx.Console & Microsoft.Extensions.Logging)",
-      "capabilitiesFileName": "WPF_CSharp_CPS_DocFx_Logging",
-      "text": "You are working in an WPF Application project using DocFx and Microsoft.Extensions.Logging and might find these links useful.",
-      "links": [
-        {
-          "text": "Getting started with WPF Application",
-          "url": "https://docs.microsoft.com/en-us/dotnet/desktop/wpf/overview/?view=netdesktop-6.0"
-        },
-        {
-          "text": "WPF tutorial",
-          "url": "https://docs.microsoft.com/en-us/dotnet/desktop/wpf/get-started/create-app-visual-studio?view=netdesktop-6.0"
-        },
-        {
-          "text": "DocFx tutorial",
-          "url": "https://docs.microsoft.com/en-us/shows/on-net/intro-to-docfx"
-        },
-        {
-          "text": "Microsoft.Extensions.Logging tutorial",
-          "url": "https://docs.microsoft.com/en-us/dotnet/core/extensions/logging?tabs=command-line"
-        }
-      ]
-    },
-    {
       "capability": "WPF",
-      "capabilityExpression": "(WPF & CSharp) & (CPS & CrossPlatformExecutable) & (!DocFx.Console & !Microsoft.Extensions.Logging)",
+      "capabilityExpression": "(WPF & CSharp) & (CPS & CrossPlatformExecutable)",
       "capabilitiesFileName": "WPF_CSharp_CPS",
       "text": "You are working in an WPF Application project and might find these links useful.",
       "links": [

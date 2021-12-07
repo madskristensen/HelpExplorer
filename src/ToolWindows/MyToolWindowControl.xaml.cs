@@ -11,6 +11,7 @@ using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.Utilities;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace HelpExplorer
 {
@@ -72,6 +73,7 @@ namespace HelpExplorer
                 CapabilityValues = capabilityValues;
             }
         }
+        [Conditional("DEBUG")]
         private void WriteCapabilitiesToFile(string capability, string fileName)
         {
             //This method only runs in debug mode
@@ -165,7 +167,6 @@ namespace HelpExplorer
                 {
                     continue;
                 }
-#if DEBUG
                 if (General.Instance.CreateCapabilitiesFile)
                 {
                     //The following capabilities line allows you to check the projects capabilities so they can be added to projectTypes.json.
@@ -174,7 +175,6 @@ namespace HelpExplorer
                         WriteCapabilitiesToFile(CapabilityValues, pt.CapabilitiesFileName);
                     }
                 }
-#endif
 
                 var text = new TextBlock { Text = pt.Text, TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, 0, 0, 5) };
                 ProjectTypes.Children.Add(text);
