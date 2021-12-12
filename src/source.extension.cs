@@ -11,7 +11,7 @@ namespace HelpExplorer
         public const string Name = "Help Explorer";
         public const string Description = @"Adds a Help Explorer tool window that provides contextual help and resources. Great for beginners, students, and hobby programmaers alike.";
         public const string Language = "en-US";
-        public const string Version = "1.0";
+        public const string Version = "21.1";
         public const string Author = "Mads Kristensen";
         public const string Tags = "help, tutorials";
     }

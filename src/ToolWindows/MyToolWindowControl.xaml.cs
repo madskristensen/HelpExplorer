@@ -12,6 +12,9 @@ using Microsoft.VisualStudio.Utilities;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Windows.Controls.Primitives;
+using Microsoft.Build.Framework.XamlTypes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace HelpExplorer
 {
@@ -20,11 +23,13 @@ namespace HelpExplorer
         private readonly ProjectTypeCollection _projectTypes;
         private readonly FileTypeCollection _fileTypes;
         public IVsHierarchy Hierarchy = null;
+        public ToolWindowMessenger ToolWindowMessenger = null;
         public string CapabilityValues = null;
+        public string fileExtension = null;
         public Project _activeProject;
         public string _activeFile;
 
-        public MyToolWindowControl(ProjectTypeCollection projectTypes, FileTypeCollection fileTypes, Project activeProject)
+        public MyToolWindowControl(ProjectTypeCollection projectTypes, FileTypeCollection fileTypes, Project activeProject, ToolWindowMessenger toolWindowMessenger)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
 
@@ -32,9 +37,17 @@ namespace HelpExplorer
             _fileTypes = fileTypes;
             _activeProject = activeProject;
             InitializeComponent();
-
+            if (toolWindowMessenger == null)
+            {
+                toolWindowMessenger = new ToolWindowMessenger();
+            }
+            ToolWindowMessenger = toolWindowMessenger;
+            toolWindowMessenger.MessageReceived += OnMessageReceived;
             GetActiveProjectCapabilities(activeProject);
-            UpdateProjects(Hierarchy);
+            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            {
+                await UpdateProjectsAsync(Hierarchy);
+            }).FireAndForget();
 
             VS.Events.SelectionEvents.SelectionChanged += SelectionChanged;
             VS.Events.DocumentEvents.BeforeDocumentWindowShow += BeforeDocumentWindowShow;
@@ -50,12 +63,31 @@ namespace HelpExplorer
                     _activeFile = docView?.Document?.FilePath;
                     var ext = System.IO.Path.GetExtension(docView?.Document?.FilePath);
                     //await UpdateFilesAsync(docView.TextBuffer.ContentType, ext);
+                    fileExtension = ext;
                     await UpdateFilesAsync(ext);
                 }
 
             }).FireAndForget();
         }
 
+        private void OnMessageReceived(object sender, string e)
+        {
+            ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
+            {
+                switch (e)
+                {
+                    case "Refresh HelpExplorer Project Links":
+                        await UpdateProjectsAsync(Hierarchy);
+                        break;
+                    case "Refresh HelpExplorer File Links":
+                        await UpdateFilesAsync(fileExtension);
+                        break;
+                    default:
+                        break;
+                }
+            }).FireAndForget();
+
+        }
         private void OnAfterCloseSolution()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -73,7 +105,6 @@ namespace HelpExplorer
                 CapabilityValues = capabilityValues;
             }
         }
-        [Conditional("DEBUG")]
         private void WriteCapabilitiesToFile(string capability, string fileName)
         {
             //This method only runs in debug mode
@@ -106,7 +137,7 @@ namespace HelpExplorer
                     _activeProject = project;
                     await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
                     GetActiveProjectCapabilities(project);
-                    UpdateProjects(Hierarchy);
+                    await UpdateProjectsAsync(Hierarchy);
                 }
             }).FireAndForget();
         }
@@ -151,9 +182,10 @@ namespace HelpExplorer
             }
         }
 
-        private void UpdateProjects(IVsHierarchy hierarchy)
+        public async Task UpdateProjectsAsync(IVsHierarchy hierarchy)
         {
             ProjectTypes.Children.Clear();
+            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
 
             foreach (ProjectType pt in _projectTypes.ProjectTypes)
             {
@@ -209,5 +241,6 @@ namespace HelpExplorer
             VsShellUtilities.OpenBrowser(e.Uri.AbsoluteUri, (int)__VSOSPFLAGS.OSP_LaunchSingleBrowser);
             e.Handled = true;
         }
+
     }
 }

@@ -19,11 +19,13 @@ namespace HelpExplorer
     [ProvideOptionPage(typeof(OptionsProvider.GeneralOptions), "HelpExplorer", "General", 0, 0, true)]
     [ProvideProfile(typeof(OptionsProvider.GeneralOptions), "HelpExplorer", "General", 0, 0, true)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
+    [ProvideService(typeof(ToolWindowMessenger), IsAsyncQueryable = true)]
     [Guid(PackageGuids.HelpExplorerString)]
     public sealed class HelpExplorerPackage : ToolkitPackage
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
+            AddService(typeof(ToolWindowMessenger), (_, _, _) => Task.FromResult<object>(new ToolWindowMessenger()));
             await this.RegisterCommandsAsync();
             this.RegisterToolWindows();
         }
