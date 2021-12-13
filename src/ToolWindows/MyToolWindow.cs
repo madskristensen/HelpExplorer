@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.ComponentModel.Design;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,7 +19,8 @@ namespace HelpExplorer
             ProjectTypeCollection projectTypes = await ProjectTypeCollection.LoadAsync();
             FileTypeCollection fileTypes = await FileTypeCollection.LoadAsync();
             Project project = await VS.Solutions.GetActiveProjectAsync();
-            return new MyToolWindowControl(projectTypes, fileTypes, project);
+            ToolWindowMessenger toolWindowMessenger = await Package.GetServiceAsync<ToolWindowMessenger, ToolWindowMessenger>();
+            return new MyToolWindowControl(projectTypes, fileTypes, project, toolWindowMessenger);
         }
 
         [Guid("1948a5b4-cb3b-42c5-848c-9f1bb6167caf")]
@@ -27,6 +29,7 @@ namespace HelpExplorer
             public Pane()
             {
                 BitmapImageMoniker = KnownMonikers.ToolWindow;
+               ToolBar = new CommandID(PackageGuids.HelpExplorer, PackageIds.TWindowToolbar);
             }
         }
     }

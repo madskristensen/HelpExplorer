@@ -8,6 +8,22 @@
 
   <Commands package="HelpExplorer">
     <!--This section defines the elements the user can interact with, like a menu command or a button or combo box in a toolbar. -->
+    
+    <Menus>
+      <Menu guid="HelpExplorer" id="TWindowToolbar" type="ToolWindowToolbar">
+        <CommandFlag>DefaultDocked</CommandFlag>
+        <Strings>
+          <ButtonText>Tool Window Toolbar</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <Groups>
+      <Group guid="HelpExplorer" id="TWindowToolbarGroup" priority="0x0000">
+        <Parent guid="HelpExplorer" id="TWindowToolbar" />
+      </Group>
+    </Groups>
+    
     <Buttons>
       <Button guid="HelpExplorer" id="MyCommand" priority="0x0100" type="Button">
         <Parent guid="VSMainMenu" id="View.DevWindowsGroup.OtherWindows.Group1"/>
@@ -18,12 +34,47 @@
           <LocCanonicalName>.View.HelpExplorer</LocCanonicalName>
         </Strings>
       </Button>
-    </Buttons>
-  </Commands>
 
-  <Symbols>
+      <Button guid="HelpExplorer" id="MultipleProjectTypeDisplay" priority="0x0001" type="Button">
+        <Parent guid="HelpExplorer" id="TWindowToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="DynamicDiscoveryDocument"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <!--<CommandFlag>IconAndText</CommandFlag>-->
+        <Strings>
+          <ButtonText>Display Multiple Project Type Links</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="HelpExplorer" id="MultipleFileTypeDisplay" priority="0x0001" type="Button">
+        <Parent guid="HelpExplorer" id="TWindowToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="ProjectFilterFile"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <!--<CommandFlag>IconAndText</CommandFlag>-->
+        <Strings>
+          <ButtonText>Display Multiple File Type Links</ButtonText>
+        </Strings>
+      </Button>
+      
+      <Button guid="HelpExplorer" id="CreateCapabilitiyFile" priority="0x0001" type="Button">
+        <Parent guid="HelpExplorer" id="TWindowToolbarGroup"/>
+        <Icon guid="ImageCatalogGuid" id="CacheGroup"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <!--<CommandFlag>IconAndText</CommandFlag>-->
+        <Strings>
+          <ButtonText>Save Project Capabilities to file</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+  </Commands>
+   <Symbols>
     <GuidSymbol name="HelpExplorer" value="{3fe2213e-0041-46e6-93bb-7db123589c7e}">
       <IDSymbol name="MyCommand" value="0x0100" />
+      <IDSymbol name="TWindowToolbar" value="0x1000" />
+      <IDSymbol name="TWindowToolbarGroup" value="0x1050" />
+      <IDSymbol name="MultipleProjectTypeDisplay" value="0x0111" />
+      <IDSymbol name="MultipleFileTypeDisplay" value="0x0112" />
+      <IDSymbol name="CreateCapabilitiyFile" value="0x0113" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>
