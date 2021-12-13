@@ -70,10 +70,25 @@ Solution Explorer’s current Project of File selection.
 ### Using Help Explorer:
 
 If Visual Studio is running? Shut it down, by Using:
-[File..Exit]()
-
+```<language>
+ Select File Menu, Then Exit
+```
+![ExitVS](TutorialImages/ExitVS.png)
 
 Install HelpExplorer.vsix extension from [HelpExplorer](https://www.vsixgallery.com/extension/HelpExplorer.c8c773f3-d62f-4717-9b7d-1d3e440a7d53) at the [Open VSIX Gallery](https://www.vsixgallery.com/) or from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/).
+
+Once you have Help Explorer extension installed:
+
+- [ ] launch Visual Studio 2022.
+- [ ] Create new C# WPF Application Project.
+    ![ExitVS](TutorialImages/CreateProjectType.png)
+- [ ] Select the MainWindow.xaml file in Solution Explorer.
+    ![MainWindowXaml](TutorialImages/MainWindow.xaml.png)
+- [ ] Load Help Explorer ToolWindow for the first time.
+- [ ] Change selected file from .xaml to .CS.
+
+
+
 
 
 
