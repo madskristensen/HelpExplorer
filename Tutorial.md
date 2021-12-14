@@ -73,7 +73,7 @@ Help Explorer has built in URL links for know project and file types. If you do 
 ### Using Help Explorer:
 
 If Visual Studio is running? Shut it down, by Using:
-```<language>
+```csharp
  Select File Menu, Then Exit
 ```
 ![ExitVS](TutorialImages/ExitVS.png)
@@ -168,7 +168,7 @@ You may need to unzip the Project Template to get access to the .csproj file.
 Open the .csproj file for your SDK Style project. It should look similar to this .csproj snippet
 Note: This snippet sample already has Custom Project Capabilities added.
 
-```<language>
+```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
@@ -192,7 +192,7 @@ Note: This snippet sample already has Custom Project Capabilities added.
  
 Now to add the Custom Project Capabilities to the .csproj file.
 
-```<language>
+```xnk
 	<ItemGroup>
 		<ProjectCapability Include="DiagnoseCapabilities" />
 		<ProjectCapability Include="Microsoft.Extensions.Logging" />
@@ -205,7 +205,7 @@ Now to add the Custom Project Capabilities to the .csproj file.
 The DiagnoseCapabilities option will list all current available Project Templates in your Project under Solution Explorer.
 If you do not want to always list all the Project Capablities in your deployed template then remove this line.
 
-```<language>
+```xml
 <ProjectCapability Include="DiagnoseCapabilities" />
 
 ```
@@ -235,7 +235,7 @@ Once they accept your pull request and merge it to master, the users will be abl
 
 #### Example of projecttypes.json file:
 
-```<language>
+```json
 {
   "projecttypes": [
     {
@@ -521,7 +521,7 @@ Once they accept your pull request and merge it to master, the users will be abl
 [IVsBooleanSymbolExpressionEvaluator.EvaluateExpression(String, String) Method](https://docs.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.shell.interop.ivsbooleansymbolexpressionevaluator.evaluateexpression?redirectedfrom=MSDN&view=visualstudiosdk-2022#Microsoft_VisualStudio_Shell_Interop_IVsBooleanSymbolExpressionEvaluator_EvaluateExpression_System_String_System_String_)
 
 So if the capabilityExpression = 
-```<language>
+```csharp
 capabilityExpression = "(WPF & CSharp) & (CPS & CrossPlatformExecutable) & (!DocFx.Console & !Microsoft.Extensions.Logging)",
 ```
 This means Display project type links if the project is:
@@ -549,7 +549,7 @@ The local path can be changed in: Visual Studio Tools Options HelpExplorer Gener
 
 #### Example of filetypes.json file:
 
-```<language>
+```json
 {
   "filetypes": [
     {
