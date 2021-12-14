@@ -19,16 +19,6 @@
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Auto">
             <StackPanel Orientation="Vertical">
-                <!--<StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
-                    --><!--<ToolBar x:Name="MyToolbar" Height="30" Width="auto" VerticalAlignment="Top" HorizontalContentAlignment="Left">--><!--
-                        <Button x:Name="MultipleProjectsTypes" Width="80" Height="80" Click="MultipleProjectsTypes_Click" ToolTip="Turn on or off, Display Multiple Projects Types Help URL Links." >
-                        </Button>
-                        <Button x:Name="MultipleFileTypes" Width="80" Height="80" Click="MultipleFileTypes_Click" ToolTip="Turn on or off, Display Multiple File Type Help URL Links." >
-                        </Button>
-                        <Button x:Name="CreateCapabilitesFile" Width="80" Height="80" Click="CreateCapabilitesFile_Click" ToolTip="Create or do not create Capabilities File.">
-                        </Button>
-                    --><!--</ToolBar>--><!--
-                </StackPanel>-->
                 <StackPanel Margin="20 10 0 0" Name="ProjectTypes" Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="250" />
                 <StackPanel Margin="20 10 0 0" Name="FileTypes" Orientation="Vertical" HorizontalAlignment="Left" MaxWidth="250" />
             </StackPanel>
