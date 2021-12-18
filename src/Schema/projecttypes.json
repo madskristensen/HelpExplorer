@@ -159,7 +159,7 @@
     {
       "capability": "WindowsXAML",
       "capabilityExpression": "(WindowsXAML & CSharp) & !CPS",
-      "capabilitiesFileName": "Universal_Windows_Platform_CSharp",
+      "capabilitiesFileName": "UWP_CSharp",
       "text": "You are working in an UWP project and might find these links useful.",
       "links": [
         {
@@ -173,9 +173,57 @@
       ]
     },
     {
+      "capability": "WindowsXAML",
+      "capabilityExpression": "(WindowsXAML & CSharp) & (!CPS & Windows.Devices.Gpio)",
+      "capabilitiesFileName": "UWP_CSharp_Windows.Devices.Gpio",
+      "text": "You are working in an UWP project supporting Windows.Devices.GPIO and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Windows.Devices.GPIO Application",
+          "url": "https://github.com/Microsoft/Windows-universal-samples/tree/main/Samples/IoT-GPIO"
+        },
+        {
+          "text": "Windows.Devices.Gpio Namespace",
+          "url": "https://docs.microsoft.com/en-us/uwp/api/windows.devices.gpio?view=winrt-22000"
+        },
+        {
+          "text": "Getting started with UWP",
+          "url": "https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide"
+        },
+        {
+          "text": "UWP tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-uwp?view=vs-2022"
+        }
+      ]
+    },
+    {
       "capability": "WinUI3",
-      "capabilityExpression": "(WinUI & CSharp) & (CPS & WapProj)",
-      "capabilitiesFileName": "WinUI_WapProj_CSharp_CPS",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & WapProj) & (WindowsAppSDK & Windows.Devices.Gpio)",
+      "capabilitiesFileName": "WinUI3_App_Msix_CSharp_CPS_GPIO",
+      "text": "You are working in an WinUI Application Package Msix .Net Core project supporting Windows.Devices.GPIO and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Windows.Devices.GPIO Application",
+          "url": "https://github.com/Microsoft/Windows-universal-samples/tree/main/Samples/IoT-GPIO"
+        },
+        {
+          "text": "Windows.Devices.Gpio Namespace",
+          "url": "https://docs.microsoft.com/en-us/uwp/api/windows.devices.gpio?view=winrt-22000"
+        },
+        {
+          "text": "Getting started with WinUI Application Package Msix .Net Core",
+          "url": "https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide"
+        },
+        {
+          "text": "WinUI Application Package Msix .Net Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-uwp?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "WinUI3",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & WapProj) & WindowsAppSDK",
+      "capabilitiesFileName": "WinUI3_WapProj_CSharp_CPS",
       "text": "You are working in an WinUI WapProj .Net Core project and might find these links useful.",
       "links": [
         {
@@ -190,8 +238,8 @@
     },
     {
       "capability": "WinUI3",
-      "capabilityExpression": "(WinUI & CSharp) & (CPS & Msix) & !WapProj",
-      "capabilitiesFileName": "WinUI_App_Msix__CSharp_CPS",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & Msix) & (!WapProj & WindowsAppSDK)",
+      "capabilitiesFileName": "WinUI3_App_Msix_CSharp_CPS",
       "text": "You are working in an WinUI Application Package Msix .Net Core project and might find these links useful.",
       "links": [
         {
@@ -206,8 +254,32 @@
     },
     {
       "capability": "WinUI3ClassLibrary",
-      "capabilityExpression": "(WinUI & CSharp) & (CPS & !WapProj)",
-      "capabilitiesFileName": "WinUI_ClassLibrary_CSharp_CPS",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & !WapProj) & (WindowsAppSDK & Windows.Devices.Gpio)",
+      "capabilitiesFileName": "WinUI3_ClassLibrary_CSharp_CPS_GPIO",
+      "text": "You are working in an WinUI Class Library .Net Core project supporting Windows.Devices.GPIO and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Windows.Devices.GPIO Application",
+          "url": "https://github.com/Microsoft/Windows-universal-samples/tree/main/Samples/IoT-GPIO"
+        },
+        {
+          "text": "Windows.Devices.Gpio Namespace",
+          "url": "https://docs.microsoft.com/en-us/uwp/api/windows.devices.gpio?view=winrt-22000"
+        },
+        {
+          "text": "Getting started with WinUI Class Library .Net Core",
+          "url": "https://docs.microsoft.com/en-us/windows/apps/winui/"
+        },
+        {
+          "text": "WinUI Class Library .Net Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/windows/apps/winui/winui3/"
+        }
+      ]
+    },
+    {
+      "capability": "WinUI3ClassLibrary",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & !WapProj) & WindowsAppSDK",
+      "capabilitiesFileName": "WinUI3_ClassLibrary_CSharp_CPS",
       "text": "You are working in an WinUI Class Library .Net Core project and might find these links useful.",
       "links": [
         {
