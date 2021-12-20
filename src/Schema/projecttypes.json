@@ -17,6 +17,38 @@
       ]
     },
     {
+      "capability": "Android",
+      "capabilityExpression": "(Android & CSharp) & (CPS & AndroidApplication)",
+      "capabilitiesFileName": "AndroidApp_CSharp_CPS",
+      "text": "You are working in an Android Application .NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Andriod Application .NET Core",
+          "url": "https://devblogs.microsoft.com/dotnet/the-future-of-net-standard/"
+        },
+        {
+          "text": "Android Application .NET Core tutorial",
+          "url": "https://nicksnettravels.builttoroam.com/android-net-6/"
+        }
+      ]
+    },
+    {
+      "capability": "Android",
+      "capabilityExpression": "(Android & CSharp) & (CPS & !AndroidApplication)",
+      "capabilitiesFileName": "AndroidLib_CSharp_CPS",
+      "text": "You are working in an Android Class Library .NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Andriod Class Library .NET Core",
+          "url": "https://devblogs.microsoft.com/dotnet/announcing-net-6/"
+        },
+        {
+          "text": "Android Class Library .NET Core tutorial",
+          "url": "https://nicksnettravels.builttoroam.com/android-net-6/"
+        }
+      ]
+    },
+    {
       "capability": "AspNetCore",
       "capabilityExpression": "(AspNetCore & CSharp) & CPS",
       "capabilitiesFileName": "AspNetCore_CSharp_CPS",
