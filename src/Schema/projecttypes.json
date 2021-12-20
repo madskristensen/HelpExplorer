@@ -81,6 +81,22 @@
       ]
     },
     {
+      "capability": "DotNetCoreRazor",
+      "capabilityExpression": "(DotNetCoreRazor & CSharp) & CPS",
+      "capabilitiesFileName": "DotNetCoreRazor_CSharp_CPS",
+      "text": "You are working in an .NET Core Razor project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with .NET Core Razor",
+          "url": "https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-6.0&tabs=visual-studio"
+        },
+        {
+          "text": ".NET Core Razor tutorial",
+          "url": "https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-6.0&tabs=visual-studio"
+        }
+      ]
+    },
+    {
       "capability": "MauiBlazor",
       "capabilityExpression": "(MauiBlazor & CSharp) & CPS",
       "capabilitiesFileName": "MauiBlazor_CSharp_CPS",
