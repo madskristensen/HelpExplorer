@@ -97,6 +97,22 @@
       ]
     },
     {
+      "capability": "AzureFunctions",
+      "capabilityExpression": "(AzureFunctions & CSharp) & CPS",
+      "capabilitiesFileName": "AzureFunctions_CSharp_CPS",
+      "text": "You are working in an AzureFunctions .NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with AzureFunctions",
+          "url": "https://docs.microsoft.com/en-us/azure/azure-functions/functions-versions?tabs=in-process%2Cv4&pivots=programming-language-csharp"
+        },
+        {
+          "text": "AzureFunctions tutorial",
+          "url": "https://kontext.tech/column/cloud-azure/794/build-azure-functions-with-net-6"
+        }
+      ]
+    },
+    {
       "capability": "TeamsFx",
       "capabilityExpression": "(TeamsFx & CSharp) & (CPS & CrossPlatformExecutable)",
       "capabilitiesFileName": "TeamsFx_CSharp_CPS",
