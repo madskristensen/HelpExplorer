@@ -17,6 +17,38 @@
       ]
     },
     {
+      "capability": "Android",
+      "capabilityExpression": "(Android & CSharp) & (CPS & AndroidApplication)",
+      "capabilitiesFileName": "AndroidApp_CSharp_CPS",
+      "text": "You are working in an Android Application .NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Andriod Application .NET Core",
+          "url": "https://devblogs.microsoft.com/dotnet/the-future-of-net-standard/"
+        },
+        {
+          "text": "Android Application .NET Core tutorial",
+          "url": "https://nicksnettravels.builttoroam.com/android-net-6/"
+        }
+      ]
+    },
+    {
+      "capability": "Android",
+      "capabilityExpression": "(Android & CSharp) & (CPS & !AndroidApplication)",
+      "capabilitiesFileName": "AndroidLib_CSharp_CPS",
+      "text": "You are working in an Android Class Library .NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Andriod Class Library .NET Core",
+          "url": "https://devblogs.microsoft.com/dotnet/announcing-net-6/"
+        },
+        {
+          "text": "Android Class Library .NET Core tutorial",
+          "url": "https://nicksnettravels.builttoroam.com/android-net-6/"
+        }
+      ]
+    },
+    {
       "capability": "AspNetCore",
       "capabilityExpression": "(AspNetCore & CSharp) & CPS",
       "capabilitiesFileName": "AspNetCore_CSharp_CPS",
@@ -45,6 +77,54 @@
         {
           "text": "ASP.NET Core Web tutorial",
           "url": "https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-aspnet-core?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "DotNetCoreRazor",
+      "capabilityExpression": "(DotNetCoreRazor & CSharp) & CPS",
+      "capabilitiesFileName": "DotNetCoreRazor_CSharp_CPS",
+      "text": "You are working in an .NET Core Razor project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with .NET Core Razor",
+          "url": "https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-6.0&tabs=visual-studio"
+        },
+        {
+          "text": ".NET Core Razor tutorial",
+          "url": "https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start?view=aspnetcore-6.0&tabs=visual-studio"
+        }
+      ]
+    },
+    {
+      "capability": "AzureFunctions",
+      "capabilityExpression": "(AzureFunctions & CSharp) & CPS",
+      "capabilitiesFileName": "AzureFunctions_CSharp_CPS",
+      "text": "You are working in an AzureFunctions .NET Core project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with AzureFunctions",
+          "url": "https://docs.microsoft.com/en-us/azure/azure-functions/functions-versions?tabs=in-process%2Cv4&pivots=programming-language-csharp"
+        },
+        {
+          "text": "AzureFunctions tutorial",
+          "url": "https://kontext.tech/column/cloud-azure/794/build-azure-functions-with-net-6"
+        }
+      ]
+    },
+    {
+      "capability": "TeamsFx",
+      "capabilityExpression": "(TeamsFx & CSharp) & (CPS & CrossPlatformExecutable)",
+      "capabilitiesFileName": "TeamsFx_CSharp_CPS",
+      "text": "You are working in an Microsoft Teams .NET Core Application project and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Microsoft Teams .NET Core Application",
+          "url": "https://docs.microsoft.com/en-us/microsoftteams/platform/toolkit/visual-studio-overview"
+        },
+        {
+          "text": "Microsoft Teams .NET Core Application tutorial",
+          "url": "https://devblogs.microsoft.com/visualstudio/build-apps-for-microsoft-teams-with-net/"
         }
       ]
     },
@@ -159,7 +239,7 @@
     {
       "capability": "WindowsXAML",
       "capabilityExpression": "(WindowsXAML & CSharp) & !CPS",
-      "capabilitiesFileName": "Universal_Windows_Platform_CSharp",
+      "capabilitiesFileName": "UWP_CSharp",
       "text": "You are working in an UWP project and might find these links useful.",
       "links": [
         {
@@ -173,9 +253,57 @@
       ]
     },
     {
+      "capability": "WindowsXAML",
+      "capabilityExpression": "(WindowsXAML & CSharp) & (!CPS & Windows.Devices.Gpio)",
+      "capabilitiesFileName": "UWP_CSharp_Windows.Devices.Gpio",
+      "text": "You are working in an UWP project supporting Windows.Devices.GPIO and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Windows.Devices.GPIO Application",
+          "url": "https://github.com/Microsoft/Windows-universal-samples/tree/main/Samples/IoT-GPIO"
+        },
+        {
+          "text": "Windows.Devices.Gpio Namespace",
+          "url": "https://docs.microsoft.com/en-us/uwp/api/windows.devices.gpio?view=winrt-22000"
+        },
+        {
+          "text": "Getting started with UWP",
+          "url": "https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide"
+        },
+        {
+          "text": "UWP tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-uwp?view=vs-2022"
+        }
+      ]
+    },
+    {
       "capability": "WinUI3",
-      "capabilityExpression": "(WinUI & CSharp) & (CPS & WapProj)",
-      "capabilitiesFileName": "WinUI_WapProj_CSharp_CPS",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & WapProj) & (WindowsAppSDK & Windows.Devices.Gpio)",
+      "capabilitiesFileName": "WinUI3_App_Msix_CSharp_CPS_GPIO",
+      "text": "You are working in an WinUI Application Package Msix .Net Core project supporting Windows.Devices.GPIO and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Windows.Devices.GPIO Application",
+          "url": "https://github.com/Microsoft/Windows-universal-samples/tree/main/Samples/IoT-GPIO"
+        },
+        {
+          "text": "Windows.Devices.Gpio Namespace",
+          "url": "https://docs.microsoft.com/en-us/uwp/api/windows.devices.gpio?view=winrt-22000"
+        },
+        {
+          "text": "Getting started with WinUI Application Package Msix .Net Core",
+          "url": "https://docs.microsoft.com/en-us/windows/uwp/get-started/universal-application-platform-guide"
+        },
+        {
+          "text": "WinUI Application Package Msix .Net Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-uwp?view=vs-2022"
+        }
+      ]
+    },
+    {
+      "capability": "WinUI3",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & WapProj) & WindowsAppSDK",
+      "capabilitiesFileName": "WinUI3_WapProj_CSharp_CPS",
       "text": "You are working in an WinUI WapProj .Net Core project and might find these links useful.",
       "links": [
         {
@@ -190,8 +318,8 @@
     },
     {
       "capability": "WinUI3",
-      "capabilityExpression": "(WinUI & CSharp) & (CPS & Msix) & !WapProj",
-      "capabilitiesFileName": "WinUI_App_Msix__CSharp_CPS",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & Msix) & (!WapProj & WindowsAppSDK)",
+      "capabilitiesFileName": "WinUI3_App_Msix_CSharp_CPS",
       "text": "You are working in an WinUI Application Package Msix .Net Core project and might find these links useful.",
       "links": [
         {
@@ -206,8 +334,32 @@
     },
     {
       "capability": "WinUI3ClassLibrary",
-      "capabilityExpression": "(WinUI & CSharp) & (CPS & !WapProj)",
-      "capabilitiesFileName": "WinUI_ClassLibrary_CSharp_CPS",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & !WapProj) & (WindowsAppSDK & Windows.Devices.Gpio)",
+      "capabilitiesFileName": "WinUI3_ClassLibrary_CSharp_CPS_GPIO",
+      "text": "You are working in an WinUI Class Library .Net Core project supporting Windows.Devices.GPIO and might find these links useful.",
+      "links": [
+        {
+          "text": "Getting started with Windows.Devices.GPIO Application",
+          "url": "https://github.com/Microsoft/Windows-universal-samples/tree/main/Samples/IoT-GPIO"
+        },
+        {
+          "text": "Windows.Devices.Gpio Namespace",
+          "url": "https://docs.microsoft.com/en-us/uwp/api/windows.devices.gpio?view=winrt-22000"
+        },
+        {
+          "text": "Getting started with WinUI Class Library .Net Core",
+          "url": "https://docs.microsoft.com/en-us/windows/apps/winui/"
+        },
+        {
+          "text": "WinUI Class Library .Net Core tutorial",
+          "url": "https://docs.microsoft.com/en-us/windows/apps/winui/winui3/"
+        }
+      ]
+    },
+    {
+      "capability": "WinUI3ClassLibrary",
+      "capabilityExpression": "(WinUI & CSharp) & (CPS & !WapProj) & WindowsAppSDK",
+      "capabilitiesFileName": "WinUI3_ClassLibrary_CSharp_CPS",
       "text": "You are working in an WinUI Class Library .Net Core project and might find these links useful.",
       "links": [
         {
