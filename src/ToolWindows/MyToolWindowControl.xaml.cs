@@ -164,6 +164,7 @@ namespace HelpExplorer
                     };
 
                     h.RequestNavigate += OnRequestNavigate;
+                    FileTypes.MaxWidth = ft.Text.ToString().Length + 200;
                     h.Inlines.Add(link.Text);
                     var textBlock = new TextBlock { Text = "- ", Margin = new Thickness(15, 0, 0, 0) };
                     textBlock.Inlines.Add(h);
@@ -219,6 +220,7 @@ namespace HelpExplorer
                     };
 
                     h.RequestNavigate += OnRequestNavigate;
+                    ProjectTypes.MaxWidth = pt.Text.ToString().Length + 200;
                     h.Inlines.Add(link.Text);
                     var textBlock = new TextBlock { Text = "- ", Margin = new Thickness(15, 0, 0, 0) };
                     textBlock.Inlines.Add(h);
